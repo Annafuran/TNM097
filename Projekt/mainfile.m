@@ -6,9 +6,7 @@ legodata = readtable('colors.csv');
 colordata = legodata{:, 'rgb'}; %Contains only RGB data. 
 
 %Generates an array of cells.
-%En legobit �r 15.8x15.8 --> 16x16
-%Vi f�rstorar x4 f�r annars s�g jag ingenting. 
-%ändra till 32 sa Sasan
+%(Storlek ska vara 32 enligt Sasan) 
 legobox = createLegoBox(colordata, 32);
 
 %Convert the cell to an array before displaying. (5 is the number on the
@@ -17,6 +15,7 @@ legobox = createLegoBox(colordata, 32);
 %Om man vill se en legobit. 
 testimage = cell2mat(legobox{30,1});
 imshow(testimage)
+grid on
 imwrite(testimage, 'testis.png');
 
 %Om man vill se alla legobitar. Kaos. 
