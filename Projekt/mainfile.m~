@@ -1,19 +1,19 @@
+clear 
+clc
 
-% - - - - - - - - - - -
+% - - - - -
 % Before you start you need to create "legoDatabase" in 
 % file: createLegoDatabase.m
 % 
 % Then build your image database below
-% - - - - - - - - - - -
+% - - - - -
 
-clear 
-clc
 
 % Load Lego Database
 %colors = load('colors');
 legoDatabase = load('legoDatabase');
 % Read reference image
-refImg = imread('mr_char.png');
+refImg = imread('pikapika.png');
 refImg = im2double(refImg);
 % Make database readable
 legoDatabase = struct2cell(legoDatabase);
@@ -26,13 +26,14 @@ legoDatabase = legoDatabase{1,1};
 lego_img = cell2mat(legoImg);
 imshow(lego_img);
 
-%% - - - Image database - - -
+%% - - - Image  - - -
 
-%Create lego pieces 
+%Our lego color data. 
 legodata = readtable('colors.csv');
-colordata = legodata{:, 'rgb'}; %Contains HEX data (rgb is wrong label). 
+colordata = legodata{:, 'rgb'}; %Contains only HEX data (rgb is wrong label). 
 
 legobox = createLegoBox(colordata, 32);
+%createDatabase(legobox);
 
 for i = 1:length(legobox)
      lego_list = cell2mat(legobox{i});
@@ -44,7 +45,7 @@ for i = 1:length(legobox)
  end
 
 
-%Display a single Legopiece 
+%Om man vill se en legobit. 
 %testimage = cell2mat(legobox{10,1});
 %imshow(testimage)
 %imwrite(testimage, 'testis.png');
