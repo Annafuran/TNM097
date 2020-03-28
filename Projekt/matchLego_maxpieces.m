@@ -31,7 +31,7 @@ for j = 1:img_rows
         if abs(val_mean - mean_lego) < tempis
         %rewrite new temporary value
         tempis = abs(val_mean - mean_lego);     
-        % Store matching lego as maching pixel
+        %Store matching lego as maching pixel
         lego_image{j,k} = old_legobox{i};
         
         temp_legopiece = old_legobox{i};
@@ -41,13 +41,11 @@ for j = 1:img_rows
                 %add legopiece to legobox if it does not exist. 
                 new_legobox{counter_newlegobox} = old_legobox{i};
                 counter_newlegobox = counter_newlegobox + 1;
-                disp(counter_newlegobox);
             end       
         end     
      end      
     end
 end
-
 
 %If the number of used legopieces is above given max numbers of colors.
 if counter_newlegobox > max_colors
@@ -75,18 +73,15 @@ if counter_newlegobox > max_colors
         end
     end
     
+    %Remove legopieces from the the box until reached number of max colors 
     while length(new_legobox) > max_colors
-        disp("hej1");
         [minval,ind] = min(euclidianarray(:));
-        disp(ind);
-        disp(length(euclidianarray));
-        disp(length(new_legobox));
         if ind <= length(new_legobox)
             new_legobox(ind) = [];
-            disp(length(new_legobox));
         end
         euclidianarray(ind) = 500;       
-    end   
+    end
+    %Create a new image with new legobox
     lego_image = matchLego(org_image, new_legobox);    
 end
 end

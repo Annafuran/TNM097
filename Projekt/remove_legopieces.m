@@ -2,7 +2,6 @@ function [new_legodatabase] = remove_legopieces(old_legodatabase, nmbr_of_pieces
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
-
 %If the number of used legopieces is above given max numbers of colors.
 if length(old_legodatabase) > nmbr_of_pieces
     %An array with all of the euclidian distances
@@ -29,23 +28,14 @@ if length(old_legodatabase) > nmbr_of_pieces
         end
     end
     
+    %Remove legopieces that are more similar to each other. 
     while length(old_legodatabase) > nmbr_of_pieces
-        disp("hej1");
-        [minval,ind] = min(euclidianarray(:));
-        disp(ind);
-        disp(length(euclidianarray));
-        disp(length(old_legodatabase));
         if ind <= length(old_legodatabase)
             old_legodatabase(ind) = [];
-            disp(length(old_legodatabase));
-        end
-        
-        euclidianarray(ind) = 500;
-        
-    end
-    
-    new_legodatabase = old_legodatabase;
-    
+        end   
+        euclidianarray(ind) = 500;        
+    end   
+    new_legodatabase = old_legodatabase;    
 end
 end
 
